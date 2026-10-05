@@ -1,16 +1,3 @@
--- dumped by AdukyyMor v2.0.1
--- tag: loadstring
--- bytes: 113495
--- extra: 
---[[
-    XeroHub UI / Obsidian 2.9 — polish + compact sliders + open-button ghost
-    Creator: Kev
-    Native Roblox interface. No WindUI runtime, icon downloads or render loops.
-    Compatible with the control API used by XeroHub game scripts.
-    Usage: local UI = require(module); local Window = UI:CreateWindow({...})
-    GuiButton input: https://create.roblox.com/docs/reference/engine/classes/GuiButton
-]]
-
 local Players = game:GetService("Players")
 local Input = game:GetService("UserInputService")
 local Workspace = game:GetService("Workspace")
