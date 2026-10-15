@@ -5,6 +5,7 @@ local Input = game:GetService("UserInputService")
 local Workspace = game:GetService("Workspace")
 local RunService = game:GetService("RunService")
 local TextService = game:GetService("TextService")
+local TweenService = game:GetService("TweenService")
 
 local XeroEnv = (getgenv and getgenv()) or _G
 local XERO_BACKGROUND_FOLDER = "XeroHub/Assets"
@@ -913,6 +914,11 @@ local function invoke(callback, ...)
     local ok, err = pcall(callback, ...)
     if not ok then end
 end
+local function softTween(obj, props, dur, style, dir)
+    local t = TweenService:Create(obj, TweenInfo.new(dur or 0.2, style or Enum.EasingStyle.Quint, dir or Enum.EasingDirection.Out), props)
+    t:Play()
+    return t
+end
 local function disconnect(bucket)
     for _,connection in ipairs(bucket) do connection:Disconnect() end
     table.clear(bucket)
@@ -1563,155 +1569,253 @@ function Tab:Dropdown(options)
     return c
 end
 function Tab:Colorpicker(options)
-    local o=options or {}; local c=self:_control("Colorpicker",o)
-    c.Reserve=62; c.HeadMinimum=44
-    local hit=button(c.Head,"",{Name="Color",Position=UDim2.new(1,-46,0,0),Size=UDim2.fromOffset(46,44)})
-    round(hit,9); local hitStroke=stroke(hit,C.Border,1); hitStroke.Transparency=.08
-    c.Interactive=hit
+    local o = options or {}
+    local c = self:_control("Colorpicker", o)
+    c.Reserve = 68
+    c.HeadMinimum = 40
+    local hit = button(c.Head, "", {
+        Name = "Color",
+        Position = UDim2.new(1, -52, 0, 0),
+        Size = UDim2.fromOffset(52, 36),
+    })
+    round(hit, 10)
+    local hitStroke = stroke(hit, C.Border, 1)
+    hitStroke.Transparency = 0.06
+    local hitInner = new("Frame", {
+        Name = "Inner",
+        BackgroundColor3 = Color3.new(1, 1, 1),
+        BackgroundTransparency = 1,
+        Size = UDim2.new(1, -6, 1, -6),
+        Position = UDim2.fromOffset(3, 3),
+    }, hit)
+    round(hitInner, 8)
+    c.Interactive = hit
 
-    function c:Set(value,silent)
-        if typeof(value)~="Color3" then return self end
-        local changed=self.Value~=value; self.Value=value; hit.BackgroundColor3=value
+    function c:Set(value, silent)
+        if typeof(value) ~= "Color3" then return self end
+        local changed = self.Value ~= value
+        self.Value = value
+        hit.BackgroundColor3 = value
         if self._updateColor then self._updateColor() end
-        if changed and not silent then invoke(self.Callback,value) end
+        if changed and not silent then invoke(self.Callback, value) end
         return self
     end
 
     function c:Open()
         if self.Locked then return end
-        local window=self.Window
-        local panel=window:_popup(self.Title,370,410,self)
-        local body=new("Frame",{Name="ColorPaletteBody",Position=UDim2.fromOffset(16,54),
-            Size=UDim2.new(1,-32,1,-70),BackgroundTransparency=1},panel)
+        local window = self.Window
+        local panel = window:_popup(self.Title, 320, 360, self)
+        local body = new("Frame", {
+            Name = "ColorBody",
+            Position = UDim2.fromOffset(14, 50),
+            Size = UDim2.new(1, -28, 1, -64),
+            BackgroundTransparency = 1,
+        }, panel)
 
-        local h,s,v=self.Value:ToHSV()
-        local state={H=h,S=s,V=v,Internal=false}
-        if state.S < .001 then state.H=0 end
+        local h, s, v = self.Value:ToHSV()
+        local state = { H = h, S = s, V = v, Internal = false }
+        if state.S < 0.001 then state.H = 0 end
 
-        local current=new("Frame",{Name="Current",Position=UDim2.fromOffset(0,0),Size=UDim2.fromOffset(44,34),
-            BackgroundColor3=self.Value},body)
-        round(current,9); stroke(current,C.Border,1)
+        local preview = new("Frame", {
+            Name = "Preview",
+            Size = UDim2.fromOffset(40, 40),
+            Position = UDim2.fromOffset(0, 0),
+            BackgroundColor3 = self.Value,
+        }, body)
+        round(preview, 12)
+        stroke(preview, C.Border, 1)
 
-        local hex=field(body,"#FFFFFF")
-        hex.Position=UDim2.fromOffset(54,0); hex.Size=UDim2.new(1,-54,0,34)
-        hex.TextSize=11; hex.Font=MEDIUM
+        local hex = field(body, "#FFFFFF")
+        hex.Position = UDim2.fromOffset(48, 4)
+        hex.Size = UDim2.new(1, -48, 0, 32)
+        hex.TextSize = 12
+        hex.Font = MEDIUM
+        hex.TextXAlignment = Enum.TextXAlignment.Center
 
-        local hint=label(body,"Paleta RGB · arrastra para elegir tono e intensidad",9,C.Muted,{
-            Position=UDim2.fromOffset(0,39),Size=UDim2.new(1,0,0,16)})
+        local sv = button(body, "", {
+            Name = "SV",
+            Position = UDim2.fromOffset(0, 52),
+            Size = UDim2.new(1, -28, 0, 180),
+            BackgroundColor3 = Color3.fromHSV(state.H, 1, 1),
+            ClipsDescendants = true,
+        })
+        round(sv, 12)
+        stroke(sv, C.Border, 1).Transparency = 0.08
+        local white = new("Frame", {
+            Size = UDim2.fromScale(1, 1),
+            BackgroundColor3 = Color3.new(1, 1, 1),
+            BorderSizePixel = 0,
+            ZIndex = 2,
+        }, sv)
+        new("UIGradient", {
+            Transparency = NumberSequence.new({
+                NumberSequenceKeypoint.new(0, 0),
+                NumberSequenceKeypoint.new(1, 1),
+            }),
+        }, white)
+        local black = new("Frame", {
+            Size = UDim2.fromScale(1, 1),
+            BackgroundColor3 = Color3.new(0, 0, 0),
+            BorderSizePixel = 0,
+            ZIndex = 3,
+        }, sv)
+        new("UIGradient", {
+            Rotation = 90,
+            Transparency = NumberSequence.new({
+                NumberSequenceKeypoint.new(0, 1),
+                NumberSequenceKeypoint.new(1, 0),
+            }),
+        }, black)
+        local cursor = new("Frame", {
+            Name = "Cursor",
+            AnchorPoint = Vector2.new(0.5, 0.5),
+            Size = UDim2.fromOffset(14, 14),
+            BackgroundColor3 = Color3.new(1, 1, 1),
+            ZIndex = 5,
+            Position = UDim2.fromScale(state.S, 1 - state.V),
+        }, sv)
+        round(cursor, 99)
+        stroke(cursor, Color3.new(0, 0, 0), 1.5)
 
-        local palette=button(body,"",{Name="RGBPalette",Position=UDim2.fromOffset(0,58),
-            Size=UDim2.new(1,0,0,220),BackgroundColor3=Color3.fromHSV(state.H,1,1),ClipsDescendants=true})
-        round(palette,11); local paletteStroke=stroke(palette,C.Border,1); paletteStroke.Transparency=.08
+        local hueBar = button(body, "", {
+            Name = "Hue",
+            Position = UDim2.new(1, -20, 0, 52),
+            Size = UDim2.fromOffset(16, 180),
+            BackgroundColor3 = Color3.new(1, 1, 1),
+        })
+        round(hueBar, 8)
+        stroke(hueBar, C.Border, 1).Transparency = 0.08
+        new("UIGradient", {
+            Rotation = 90,
+            Color = ColorSequence.new({
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 0, 0)),
+                ColorSequenceKeypoint.new(0.17, Color3.fromRGB(255, 255, 0)),
+                ColorSequenceKeypoint.new(0.33, Color3.fromRGB(0, 255, 0)),
+                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(0, 255, 255)),
+                ColorSequenceKeypoint.new(0.67, Color3.fromRGB(0, 0, 255)),
+                ColorSequenceKeypoint.new(0.83, Color3.fromRGB(255, 0, 255)),
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 0, 0)),
+            }),
+        }, hueBar)
+        local hueCursor = new("Frame", {
+            Name = "HueCursor",
+            AnchorPoint = Vector2.new(0.5, 0.5),
+            Position = UDim2.fromScale(0.5, state.H),
+            Size = UDim2.fromOffset(18, 6),
+            BackgroundColor3 = Color3.new(1, 1, 1),
+            ZIndex = 5,
+        }, hueBar)
+        round(hueCursor, 3)
+        stroke(hueCursor, Color3.new(0, 0, 0), 1)
 
-        local whiteLayer=new("Frame",{Name="WhiteBlend",Size=UDim2.fromScale(1,1),BackgroundColor3=Color3.new(1,1,1),
-            BorderSizePixel=0,ZIndex=2},palette)
-        new("UIGradient",{Transparency=NumberSequence.new({
-            NumberSequenceKeypoint.new(0,0),NumberSequenceKeypoint.new(1,1)
-        })},whiteLayer)
+        local rgbRow = new("Frame", {
+            Name = "RGB",
+            BackgroundTransparency = 1,
+            Position = UDim2.fromOffset(0, 244),
+            Size = UDim2.new(1, 0, 0, 32),
+        }, body)
+        local function rgbBox(name, order)
+            local box = field(rgbRow, name)
+            box.Name = name
+            box.Size = UDim2.new(0.333, -4, 1, 0)
+            box.Position = UDim2.new((order - 1) * 0.333, order > 1 and 2 or 0, 0, 0)
+            box.TextXAlignment = Enum.TextXAlignment.Center
+            box.TextSize = 11
+            box.Font = MEDIUM
+            return box
+        end
+        local rBox, gBox, bBox = rgbBox("R", 1), rgbBox("G", 2), rgbBox("B", 3)
 
-        local blackLayer=new("Frame",{Name="BlackBlend",Size=UDim2.fromScale(1,1),BackgroundColor3=Color3.new(0,0,0),
-            BorderSizePixel=0,ZIndex=3},palette)
-        new("UIGradient",{Rotation=90,Transparency=NumberSequence.new({
-            NumberSequenceKeypoint.new(0,1),NumberSequenceKeypoint.new(1,0)
-        })},blackLayer)
-
-        local cursor=new("Frame",{Name="PaletteCursor",AnchorPoint=Vector2.new(.5,.5),Size=UDim2.fromOffset(18,18),
-            BackgroundTransparency=1,ZIndex=6},palette)
-        round(cursor,9); local cursorStroke=stroke(cursor,Color3.new(1,1,1),2); cursorStroke.Transparency=0
-        local cursorShadow=new("UIStroke",{Color=Color3.new(0,0,0),Thickness=1,Transparency=.18,
-            ApplyStrokeMode=Enum.ApplyStrokeMode.Border},cursor)
-
-        local hueBar=button(body,"",{Name="Hue",Position=UDim2.fromOffset(0,290),Size=UDim2.new(1,0,0,18),
-            BackgroundColor3=Color3.new(1,1,1),ClipsDescendants=false})
-        round(hueBar,9); local hueStroke=stroke(hueBar,C.Border,1); hueStroke.Transparency=.1
-        new("UIGradient",{Color=ColorSequence.new({
-            ColorSequenceKeypoint.new(0.00,Color3.fromRGB(255,0,0)),
-            ColorSequenceKeypoint.new(0.17,Color3.fromRGB(255,255,0)),
-            ColorSequenceKeypoint.new(0.33,Color3.fromRGB(0,255,0)),
-            ColorSequenceKeypoint.new(0.50,Color3.fromRGB(0,255,255)),
-            ColorSequenceKeypoint.new(0.67,Color3.fromRGB(0,0,255)),
-            ColorSequenceKeypoint.new(0.83,Color3.fromRGB(255,0,255)),
-            ColorSequenceKeypoint.new(1.00,Color3.fromRGB(255,0,0))
-        })},hueBar)
-
-        local hueCursor=new("Frame",{Name="HueCursor",AnchorPoint=Vector2.new(.5,.5),Position=UDim2.fromScale(state.H,.5),
-            Size=UDim2.fromOffset(5,26),BackgroundColor3=Color3.fromRGB(250,250,250),ZIndex=6},hueBar)
-        round(hueCursor,3); local hueCursorStroke=stroke(hueCursor,Color3.fromRGB(20,20,20),1); hueCursorStroke.Transparency=.1
-
-        local presets=Instance.new("Frame")
-        presets.Name="Presets"; presets.BackgroundTransparency=1
-        presets.Position=UDim2.fromOffset(0,320); presets.Size=UDim2.new(1,0,0,30); presets.Parent=body
-        local presetLayout=Instance.new("UIListLayout")
-        presetLayout.FillDirection=Enum.FillDirection.Horizontal; presetLayout.HorizontalAlignment=Enum.HorizontalAlignment.Center
-        presetLayout.Padding=UDim.new(0,7); presetLayout.Parent=presets
-        local presetColors={
-            Color3.fromRGB(255,255,255),Color3.fromRGB(180,180,180),Color3.fromRGB(30,30,30),
-            Color3.fromRGB(255,72,72),Color3.fromRGB(255,170,45),Color3.fromRGB(255,225,55),
-            Color3.fromRGB(70,220,110),Color3.fromRGB(65,195,255),Color3.fromRGB(120,100,255),Color3.fromRGB(235,85,220)
-        }
+        local function toHex(col)
+            return string.format("#%02X%02X%02X", math.floor(col.R * 255 + 0.5), math.floor(col.G * 255 + 0.5), math.floor(col.B * 255 + 0.5))
+        end
 
         local function applyHSV()
-            state.Internal=true
-            self:Set(Color3.fromHSV(state.H,state.S,state.V))
-            state.Internal=false
+            state.Internal = true
+            local col = Color3.fromHSV(state.H, state.S, state.V)
+            self:Set(col)
+            preview.BackgroundColor3 = col
+            sv.BackgroundColor3 = Color3.fromHSV(state.H, 1, 1)
+            hex.Text = toHex(col)
+            rBox.Text = tostring(math.floor(col.R * 255 + 0.5))
+            gBox.Text = tostring(math.floor(col.G * 255 + 0.5))
+            bBox.Text = tostring(math.floor(col.B * 255 + 0.5))
+            cursor.Position = UDim2.fromScale(state.S, 1 - state.V)
+            hueCursor.Position = UDim2.fromScale(0.5, state.H)
+            state.Internal = false
         end
 
-        local function syncFromValue()
-            if not state.Internal then
-                local nh,ns,nv=self.Value:ToHSV()
-                if ns>.001 then state.H=nh end
-                state.S=ns; state.V=nv
-            end
-            current.BackgroundColor3=self.Value
-            hex.Text="#"..self.Value:ToHex():upper()
-            palette.BackgroundColor3=Color3.fromHSV(state.H,1,1)
-            cursor.Position=UDim2.new(state.S,0,1-state.V,0)
-            hueCursor.Position=UDim2.new(state.H,0,.5,0)
-        end
-        self._updateColor=syncFromValue
-
-        local function updatePalette(position)
-            local size=palette.AbsoluteSize
-            if size.X<=1 or size.Y<=1 then return end
-            state.S=math.clamp((position.X-palette.AbsolutePosition.X)/size.X,0,1)
-            state.V=1-math.clamp((position.Y-palette.AbsolutePosition.Y)/size.Y,0,1)
-            applyHSV()
-        end
-        local function updateHue(position)
-            local width=hueBar.AbsoluteSize.X
-            if width<=1 then return end
-            state.H=math.clamp((position.X-hueBar.AbsolutePosition.X)/width,0,1)
+        function c._updateColor()
+            if state.Internal then return end
+            local nh, ns, nv = self.Value:ToHSV()
+            if ns > 0.001 then state.H = nh end
+            state.S, state.V = ns, nv
             applyHSV()
         end
 
-        connect(window,palette.InputBegan,function(input)
-            if input.UserInputType==Enum.UserInputType.MouseButton1 or input.UserInputType==Enum.UserInputType.Touch then
-                window:_beginDrag(input,updatePalette,nil,self); updatePalette(input.Position)
-            end
-        end,window._popupConnections)
-        connect(window,hueBar.InputBegan,function(input)
-            if input.UserInputType==Enum.UserInputType.MouseButton1 or input.UserInputType==Enum.UserInputType.Touch then
-                window:_beginDrag(input,updateHue,nil,self); updateHue(input.Position)
-            end
-        end,window._popupConnections)
-
-        for index,color in ipairs(presetColors) do
-            local swatch=button(presets,"",{Name="Preset"..index,Size=UDim2.fromOffset(24,24),BackgroundColor3=color,LayoutOrder=index})
-            round(swatch,7); local ss=stroke(swatch,C.Border,1); ss.Transparency=.1
-            connect(window,swatch.Activated,function() self:Set(color) end,window._popupConnections)
+        local function updateSV(pos)
+            local abs = sv.AbsolutePosition
+            local size = sv.AbsoluteSize
+            if size.X < 1 or size.Y < 1 then return end
+            state.S = math.clamp((pos.X - abs.X) / size.X, 0, 1)
+            state.V = 1 - math.clamp((pos.Y - abs.Y) / size.Y, 0, 1)
+            applyHSV()
+        end
+        local function updateHue(pos)
+            local abs = hueBar.AbsolutePosition
+            local size = hueBar.AbsoluteSize
+            if size.Y < 1 then return end
+            state.H = math.clamp((pos.Y - abs.Y) / size.Y, 0, 1)
+            applyHSV()
         end
 
-        connect(window,hex.FocusLost,function()
-            local value=hex.Text:gsub("#","")
-            if #value==6 and value:match("^%x+$") then self:Set(Color3.fromHex(value)) else syncFromValue() end
-        end,window._popupConnections)
+        connect(window, sv.InputBegan, function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+                window:_beginDrag(input, updateSV, nil, self)
+                updateSV(input.Position)
+            end
+        end, window._popupConnections)
+        connect(window, hueBar.InputBegan, function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+                window:_beginDrag(input, updateHue, nil, self)
+                updateHue(input.Position)
+            end
+        end, window._popupConnections)
 
-        window._popupCleanup=function() self._updateColor=nil end
-        syncFromValue()
+        connect(window, hex.FocusLost, function()
+            local value = hex.Text:gsub("#", "")
+            if #value == 6 and value:match("^%x+$") then
+                self:Set(Color3.fromHex(value))
+                c._updateColor()
+            else
+                applyHSV()
+            end
+        end, window._popupConnections)
+
+        local function bindRGB(box, channel)
+            connect(window, box.FocusLost, function()
+                local n = math.clamp(tonumber(box.Text) or 0, 0, 255)
+                local col = self.Value
+                local r, g, b = col.R * 255, col.G * 255, col.B * 255
+                if channel == "R" then r = n elseif channel == "G" then g = n else b = n end
+                self:Set(Color3.fromRGB(r, g, b))
+                c._updateColor()
+            end, window._popupConnections)
+        end
+        bindRGB(rBox, "R")
+        bindRGB(gBox, "G")
+        bindRGB(bBox, "B")
+
+        window._popupCleanup = function()
+            self._updateColor = nil
+        end
+        applyHSV()
     end
 
-    connect(c.Window,hit.Activated,function() c:Open() end)
-    c:Set(o.Default or o.Value or C.White,true)
+    connect(c.Window, hit.Activated, function()
+        c:Open()
+    end)
+    c:Set(o.Default or o.Value or C.White, true)
     return c
 end
 
@@ -2700,10 +2804,11 @@ function Nox:CreateWindow(options)
     end
     function w:_popup(title,width,height,owner)
         self:_closePopup()
-        local layer=button(surface,"",{Name="ModalBackdrop",BackgroundColor3=Color3.new(),BackgroundTransparency=.3,Size=UDim2.fromScale(1,1),ZIndex=50})
+        local layer=button(surface,"",{Name="ModalBackdrop",BackgroundColor3=Color3.new(),BackgroundTransparency=1,Size=UDim2.fromScale(1,1),ZIndex=50})
         launcherGui.Enabled=false
-        local panel=button(layer,"",{Name="Modal",BackgroundColor3=C.Panel,BackgroundTransparency=Glass.Popup,AnchorPoint=Vector2.new(.5,.5),Position=UDim2.fromScale(.5,.5),Size=UDim2.fromOffset(width,height),ZIndex=2,ClipsDescendants=true})
+        local panel=button(layer,"",{Name="Modal",BackgroundColor3=C.Panel,BackgroundTransparency=1,AnchorPoint=Vector2.new(.5,.5),Position=UDim2.fromScale(.5,.5),Size=UDim2.fromOffset(width,height),ZIndex=2,ClipsDescendants=true})
         round(panel,16); stroke(panel,C.Border)
+        local pScale=new("UIScale",{Scale=0.94},panel)
         label(panel,title,14,C.Text,{Position=UDim2.fromOffset(16,17),Size=UDim2.new(1,-62,0,22),Font=BOLD,TextTruncate=Enum.TextTruncate.AtEnd})
         local dismiss=button(panel,"×",{Position=UDim2.new(1,-50,0,7),Size=UDim2.fromOffset(40,40),TextSize=18}); round(dismiss,8)
         local function fit()
@@ -2713,6 +2818,9 @@ function Nox:CreateWindow(options)
         connect(self,dismiss.Activated,function() self:_closePopup() end,self._popupConnections)
         connect(self,surface:GetPropertyChangedSignal("AbsoluteSize"),fit,self._popupConnections)
         self._popupLayer=layer; self._popupOwner=owner; fit()
+        softTween(layer,{BackgroundTransparency=0.35},0.2)
+        softTween(panel,{BackgroundTransparency=Glass.Popup},0.22)
+        softTween(pScale,{Scale=1},0.28,Enum.EasingStyle.Back)
         return panel
     end
     function w:_drawer(value)
@@ -3190,16 +3298,31 @@ function Nox:CreateWindow(options)
     function w:OnClose(callback) table.insert(self._onClose,callback); return self end
     function w:Open()
         if self.Destroyed then return self end
-        local changed=not self.Opened; self.Opened=true; root.Visible=true
+        local changed = not self.Opened
+        self.Opened = true
+        root.Visible = true
+        root.BackgroundTransparency = 1
+        if scale then scale.Scale = 0.94 * self.UIScale end
+        softTween(root, { BackgroundTransparency = Glass.Root }, 0.28)
+        if scale then softTween(scale, { Scale = self.UIScale }, 0.32, Enum.EasingStyle.Back) end
         self:_applyOpenButtonState()
-        if changed then for _,callback in ipairs(self._onOpen) do invoke(callback) end end
+        if changed then for _, callback in ipairs(self._onOpen) do invoke(callback) end end
         return self
     end
     function w:Close()
         if self.Destroyed then return self end
-        local changed=self.Opened; self.Opened=false; root.Visible=false; self:_closePopup()
+        local changed = self.Opened
+        self.Opened = false
+        self:_closePopup()
+        softTween(root, { BackgroundTransparency = 1 }, 0.18)
+        if scale then softTween(scale, { Scale = 0.94 * self.UIScale }, 0.18) end
+        task.delay(0.18, function()
+            if not self.Opened and not self.Destroyed then
+                root.Visible = false
+            end
+        end)
         self:_applyOpenButtonState()
-        if changed then for _,callback in ipairs(self._onClose) do invoke(callback) end end
+        if changed then for _, callback in ipairs(self._onClose) do invoke(callback) end end
         return self
     end
     function w:Toggle() if self.Opened then return self:Close() else return self:Open() end end
@@ -3437,30 +3560,101 @@ function Nox:GetTheme(name)
 end
 function Nox:Notify(options)
     if not self.Window then return end
-    local w=self.Window; local o=options or {}
+    local w = self.Window
+    local o = options or {}
     if w.Destroyed then return end
-    if w._notice then w._notice:Destroy() end
-    local holder=new("Frame",{Name="XeroNotice",BackgroundColor3=C.Window,AnchorPoint=Vector2.new(1,0),
-        Position=UDim2.new(1,384,0,64),Size=UDim2.new(1,-24,0,0),AutomaticSize=Enum.AutomaticSize.Y,ZIndex=100},w.ScreenGui)
-    new("UISizeConstraint",{MaxSize=Vector2.new(360,math.huge)},holder)
-    round(holder,12); stroke(holder); padding(holder,14,12); vertical(holder,6)
-    label(holder,plain(o.Title or "XeroHub"),13,C.Text,{Font=BOLD,LayoutOrder=1})
-    label(holder,plain(o.Content or o.Desc),12,C.Muted,{Size=UDim2.new(1,0,0,0),AutomaticSize=Enum.AutomaticSize.Y,TextWrapped=true,LayoutOrder=2})
-    local tweenService=game:GetService("TweenService")
-    tweenService:Create(holder,TweenInfo.new(.18,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),
-        {Position=UDim2.new(1,-12,0,64)}):Play()
-    w._notice=holder
-    task.delay(math.clamp(tonumber(o.Duration) or 2,1,8),function()
-        if holder.Parent then
-            local exitTween=tweenService:Create(holder,TweenInfo.new(.14,Enum.EasingStyle.Quint,Enum.EasingDirection.In),
-                {Position=UDim2.new(1,384,0,64)})
-            exitTween:Play()
-            exitTween.Completed:Wait()
-            if holder.Parent then holder:Destroy() end
+    w._notices = w._notices or {}
+    local duration = math.clamp(tonumber(o.Duration) or 3, 1, 12)
+    local holder = new("Frame", {
+        Name = "XeroNotice",
+        BackgroundColor3 = C.Window,
+        AnchorPoint = Vector2.new(1, 0),
+        Position = UDim2.new(1, 40, 0, 0),
+        Size = UDim2.fromOffset(300, 0),
+        AutomaticSize = Enum.AutomaticSize.Y,
+        ZIndex = 120,
+        BackgroundTransparency = 0.04,
+    }, w.ScreenGui)
+    new("UISizeConstraint", { MaxSize = Vector2.new(340, math.huge) }, holder)
+    round(holder, 14)
+    local st = stroke(holder, C.Border, 1)
+    st.Transparency = 0.15
+    padding(holder, 14, 12)
+    vertical(holder, 6)
+
+    local accent = new("Frame", {
+        Name = "Accent",
+        BackgroundColor3 = (typeof(o.Color) == "Color3" and o.Color) or C.Text,
+        Size = UDim2.new(0, 3, 1, 0),
+        Position = UDim2.fromOffset(0, 0),
+        ZIndex = 121,
+    }, holder)
+    round(accent, 2)
+
+    label(holder, plain(o.Title or "XeroHub"), 13, C.Text, { Font = BOLD, LayoutOrder = 1, Size = UDim2.new(1, -8, 0, 18) })
+    label(holder, plain(o.Content or o.Desc or ""), 12, C.Muted, {
+        Size = UDim2.new(1, -8, 0, 0),
+        AutomaticSize = Enum.AutomaticSize.Y,
+        TextWrapped = true,
+        LayoutOrder = 2,
+    })
+
+    local barBg = new("Frame", {
+        Name = "BarBg",
+        BackgroundColor3 = C.Border,
+        BackgroundTransparency = 0.5,
+        Size = UDim2.new(1, 0, 0, 3),
+        LayoutOrder = 3,
+    }, holder)
+    round(barBg, 2)
+    local bar = new("Frame", {
+        Name = "Bar",
+        BackgroundColor3 = (typeof(o.Color) == "Color3" and o.Color) or C.Text,
+        Size = UDim2.fromScale(1, 1),
+        BorderSizePixel = 0,
+    }, barBg)
+    round(bar, 2)
+
+    local function layoutNotices()
+        local y = 16
+        for i = #w._notices, 1, -1 do
+            local item = w._notices[i]
+            if item and item.Parent then
+                softTween(item, { Position = UDim2.new(1, -16, 0, y) }, 0.22)
+                y = y + item.AbsoluteSize.Y + 10
+            else
+                table.remove(w._notices, i)
+            end
         end
-        if w._notice==holder then w._notice=nil end
+    end
+
+    table.insert(w._notices, holder)
+    task.defer(function()
+        layoutNotices()
+        softTween(holder, { Position = UDim2.new(1, -16, 0, holder.Position.Y.Offset) }, 0.28)
+        softTween(bar, { Size = UDim2.fromScale(0, 1) }, duration, Enum.EasingStyle.Linear)
     end)
-    return {Close=function() if holder.Parent then holder:Destroy() end end}
+
+    local closed = false
+    local function close()
+        if closed then return end
+        closed = true
+        softTween(holder, { Position = UDim2.new(1, 40, 0, holder.Position.Y.Offset), BackgroundTransparency = 1 }, 0.2)
+        task.delay(0.22, function()
+            if holder.Parent then holder:Destroy() end
+            for i, item in ipairs(w._notices) do
+                if item == holder then
+                    table.remove(w._notices, i)
+                    break
+                end
+            end
+            layoutNotices()
+        end)
+    end
+
+    task.delay(duration, close)
+    return { Close = close }
 end
+
 Nox:SetTheme("Xero")
 return Nox
