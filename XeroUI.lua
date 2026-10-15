@@ -226,7 +226,328 @@ local THEMES = {
             SliderFillGradient = {Color3.fromRGB(20,20,24),Color3.fromRGB(78,78,86)},
             SliderHalo = Color3.fromRGB(20,20,24),
             SliderThumb = Color3.fromRGB(250,250,252),
+
             SliderThumbStroke = Color3.fromRGB(118,118,128),
+        },
+    },
+    Midnight = {
+        Name = "Midnight",
+        Colors = {
+            Window = Color3.fromRGB(8,10,18), Panel = Color3.fromRGB(12,15,26),
+            Row = Color3.fromRGB(18,22,36), Field = Color3.fromRGB(10,12,20),
+            Hover = Color3.fromRGB(28,34,52), Border = Color3.fromRGB(48,56,82),
+            Text = Color3.fromRGB(230,235,255), Muted = Color3.fromRGB(140,150,185),
+            Faint = Color3.fromRGB(90,100,130), White = Color3.fromRGB(255,255,255),
+        },
+        Glass = { Root = 0.07, Sidebar = 0.22, Row = 0.30, Field = 0.34, Button = 0.24, NavIdle = 0.38, NavHover = 0.18, NavActive = 0.10, Popup = 0.12 },
+        Visuals = {
+            RootBase = Color3.fromRGB(6,8,14), RootStroke = Color3.fromRGB(55,65,95),
+            RootGradient = { Color3.fromRGB(5,7,14), Color3.fromRGB(12,16,28), Color3.fromRGB(4,6,12) },
+            AnimeImageTransparency = 0.08, AnimeShadeColor = Color3.fromRGB(0,0,0), AnimeShadeTransparency = 0.62, AnimeShadeStops = {0.00,0.12,0.32},
+            SidebarBase = Color3.fromRGB(10,12,22), SidebarStroke = Color3.fromRGB(36,42,64),
+            SearchStroke = Color3.fromRGB(40,48,70), OpenStroke = Color3.fromRGB(70,80,110), OpenButtonBase = Color3.fromRGB(8,10,18),
+            BackdropGlowA = Color3.fromRGB(40,50,90), BackdropGlowB = Color3.fromRGB(20,28,50), BackdropWatermarkTransparency = 0.97,
+            GridColor = Color3.fromRGB(180,190,255), GridVTransparency = 0.955, GridHTransparency = 0.965,
+            NavButtonIdle = Color3.fromRGB(12,14,24), NavButtonHover = Color3.fromRGB(22,26,42), ResizeGuideTransparency = 0.35,
+            ControlStroke = Color3.fromRGB(42,50,72), FieldStroke = Color3.fromRGB(40,48,68), ButtonBase = Color3.fromRGB(16,20,32), ButtonStroke = Color3.fromRGB(42,50,72),
+            DropdownStroke = Color3.fromRGB(40,48,68), PopupStroke = Color3.fromRGB(70,80,110),
+            GothicShell = Color3.fromRGB(255,255,255), GothicShellStroke = Color3.fromRGB(70,80,110), GothicGlow = Color3.fromRGB(30,36,60),
+            GothicBar = Color3.fromRGB(70,80,110), GothicCorner = Color3.fromRGB(90,100,130), GothicWatermark = Color3.fromRGB(255,255,255), GothicWatermarkTransparency = 0.95,
+            GothicRow = Color3.fromRGB(12,14,24), GothicStroke = Color3.fromRGB(48,56,82), GothicDesc = Color3.fromRGB(160,170,200),
+            GothicBadgeText = Color3.fromRGB(240,245,255), GothicBadgeBackground = Color3.fromRGB(16,20,32), GothicBadgeStroke = Color3.fromRGB(55,65,95),
+            SliderValueBackground = Color3.fromRGB(10,12,20), SliderValueText = Color3.fromRGB(230,235,255), SliderValueStroke = Color3.fromRGB(48,56,82),
+            SliderRail = Color3.fromRGB(16,20,32), SliderRailStroke = Color3.fromRGB(42,50,72), SliderTrack = Color3.fromRGB(40,48,70),
+            SliderTrackGradient = { Color3.fromRGB(32,40,60), Color3.fromRGB(48,56,82), Color3.fromRGB(32,40,60) },
+            SliderFill = Color3.fromRGB(120,150,255), SliderFillGradient = { Color3.fromRGB(160,180,255), Color3.fromRGB(80,110,220) },
+            SliderHalo = Color3.fromRGB(120,150,255), SliderThumb = Color3.fromRGB(240,245,255), SliderThumbStroke = Color3.fromRGB(80,100,160),
+        },
+    },
+    Ocean = {
+        Name = "Ocean",
+        Colors = {
+            Window = Color3.fromRGB(6,14,18), Panel = Color3.fromRGB(10,20,26),
+            Row = Color3.fromRGB(14,28,34), Field = Color3.fromRGB(8,16,20),
+            Hover = Color3.fromRGB(22,42,50), Border = Color3.fromRGB(36,70,80),
+            Text = Color3.fromRGB(220,245,250), Muted = Color3.fromRGB(120,170,180),
+            Faint = Color3.fromRGB(70,110,120), White = Color3.fromRGB(255,255,255),
+        },
+        Glass = { Root = 0.07, Sidebar = 0.22, Row = 0.30, Field = 0.34, Button = 0.24, NavIdle = 0.38, NavHover = 0.18, NavActive = 0.10, Popup = 0.12 },
+        Visuals = {
+            RootBase = Color3.fromRGB(4,12,16), RootStroke = Color3.fromRGB(40,80,90),
+            RootGradient = { Color3.fromRGB(4,12,16), Color3.fromRGB(10,24,30), Color3.fromRGB(3,10,14) },
+            AnimeImageTransparency = 0.08, AnimeShadeColor = Color3.fromRGB(0,0,0), AnimeShadeTransparency = 0.62, AnimeShadeStops = {0.00,0.12,0.32},
+            SidebarBase = Color3.fromRGB(8,18,22), SidebarStroke = Color3.fromRGB(28,55,62),
+            SearchStroke = Color3.fromRGB(32,60,68), OpenStroke = Color3.fromRGB(50,100,110), OpenButtonBase = Color3.fromRGB(6,14,18),
+            BackdropGlowA = Color3.fromRGB(20,70,80), BackdropGlowB = Color3.fromRGB(10,40,50), BackdropWatermarkTransparency = 0.97,
+            GridColor = Color3.fromRGB(120,220,230), GridVTransparency = 0.955, GridHTransparency = 0.965,
+            NavButtonIdle = Color3.fromRGB(10,20,24), NavButtonHover = Color3.fromRGB(18,34,40), ResizeGuideTransparency = 0.35,
+            ControlStroke = Color3.fromRGB(34,64,72), FieldStroke = Color3.fromRGB(32,60,68), ButtonBase = Color3.fromRGB(12,24,30), ButtonStroke = Color3.fromRGB(34,64,72),
+            DropdownStroke = Color3.fromRGB(32,60,68), PopupStroke = Color3.fromRGB(50,100,110),
+            GothicShell = Color3.fromRGB(255,255,255), GothicShellStroke = Color3.fromRGB(50,100,110), GothicGlow = Color3.fromRGB(16,40,48),
+            GothicBar = Color3.fromRGB(50,100,110), GothicCorner = Color3.fromRGB(70,120,130), GothicWatermark = Color3.fromRGB(255,255,255), GothicWatermarkTransparency = 0.95,
+            GothicRow = Color3.fromRGB(10,20,24), GothicStroke = Color3.fromRGB(36,70,80), GothicDesc = Color3.fromRGB(140,190,200),
+            GothicBadgeText = Color3.fromRGB(230,250,255), GothicBadgeBackground = Color3.fromRGB(12,24,30), GothicBadgeStroke = Color3.fromRGB(40,80,90),
+            SliderValueBackground = Color3.fromRGB(8,16,20), SliderValueText = Color3.fromRGB(220,245,250), SliderValueStroke = Color3.fromRGB(36,70,80),
+            SliderRail = Color3.fromRGB(12,24,30), SliderRailStroke = Color3.fromRGB(34,64,72), SliderTrack = Color3.fromRGB(32,60,70),
+            SliderTrackGradient = { Color3.fromRGB(24,48,56), Color3.fromRGB(36,70,80), Color3.fromRGB(24,48,56) },
+            SliderFill = Color3.fromRGB(60,200,210), SliderFillGradient = { Color3.fromRGB(120,230,240), Color3.fromRGB(30,160,175) },
+            SliderHalo = Color3.fromRGB(60,200,210), SliderThumb = Color3.fromRGB(240,252,255), SliderThumbStroke = Color3.fromRGB(50,130,140),
+        },
+    },
+    Emerald = {
+        Name = "Emerald",
+        Colors = {
+            Window = Color3.fromRGB(8,14,10), Panel = Color3.fromRGB(12,20,14),
+            Row = Color3.fromRGB(16,28,20), Field = Color3.fromRGB(10,16,12),
+            Hover = Color3.fromRGB(24,42,30), Border = Color3.fromRGB(42,72,50),
+            Text = Color3.fromRGB(230,250,235), Muted = Color3.fromRGB(130,175,145),
+            Faint = Color3.fromRGB(80,115,90), White = Color3.fromRGB(255,255,255),
+        },
+        Glass = { Root = 0.07, Sidebar = 0.22, Row = 0.30, Field = 0.34, Button = 0.24, NavIdle = 0.38, NavHover = 0.18, NavActive = 0.10, Popup = 0.12 },
+        Visuals = {
+            RootBase = Color3.fromRGB(6,12,8), RootStroke = Color3.fromRGB(48,80,55),
+            RootGradient = { Color3.fromRGB(5,12,8), Color3.fromRGB(12,22,14), Color3.fromRGB(4,10,6) },
+            AnimeImageTransparency = 0.08, AnimeShadeColor = Color3.fromRGB(0,0,0), AnimeShadeTransparency = 0.62, AnimeShadeStops = {0.00,0.12,0.32},
+            SidebarBase = Color3.fromRGB(10,18,12), SidebarStroke = Color3.fromRGB(32,55,38),
+            SearchStroke = Color3.fromRGB(36,60,42), OpenStroke = Color3.fromRGB(55,95,65), OpenButtonBase = Color3.fromRGB(8,14,10),
+            BackdropGlowA = Color3.fromRGB(30,70,40), BackdropGlowB = Color3.fromRGB(16,40,22), BackdropWatermarkTransparency = 0.97,
+            GridColor = Color3.fromRGB(140,230,160), GridVTransparency = 0.955, GridHTransparency = 0.965,
+            NavButtonIdle = Color3.fromRGB(10,18,12), NavButtonHover = Color3.fromRGB(18,32,22), ResizeGuideTransparency = 0.35,
+            ControlStroke = Color3.fromRGB(38,64,44), FieldStroke = Color3.fromRGB(36,60,42), ButtonBase = Color3.fromRGB(14,24,16), ButtonStroke = Color3.fromRGB(38,64,44),
+            DropdownStroke = Color3.fromRGB(36,60,42), PopupStroke = Color3.fromRGB(55,95,65),
+            GothicShell = Color3.fromRGB(255,255,255), GothicShellStroke = Color3.fromRGB(55,95,65), GothicGlow = Color3.fromRGB(20,40,24),
+            GothicBar = Color3.fromRGB(55,95,65), GothicCorner = Color3.fromRGB(75,120,85), GothicWatermark = Color3.fromRGB(255,255,255), GothicWatermarkTransparency = 0.95,
+            GothicRow = Color3.fromRGB(10,18,12), GothicStroke = Color3.fromRGB(42,72,50), GothicDesc = Color3.fromRGB(150,195,160),
+            GothicBadgeText = Color3.fromRGB(235,250,240), GothicBadgeBackground = Color3.fromRGB(14,24,16), GothicBadgeStroke = Color3.fromRGB(48,80,55),
+            SliderValueBackground = Color3.fromRGB(10,16,12), SliderValueText = Color3.fromRGB(230,250,235), SliderValueStroke = Color3.fromRGB(42,72,50),
+            SliderRail = Color3.fromRGB(14,24,16), SliderRailStroke = Color3.fromRGB(38,64,44), SliderTrack = Color3.fromRGB(36,60,42),
+            SliderTrackGradient = { Color3.fromRGB(28,48,32), Color3.fromRGB(42,72,50), Color3.fromRGB(28,48,32) },
+            SliderFill = Color3.fromRGB(70,210,120), SliderFillGradient = { Color3.fromRGB(120,240,160), Color3.fromRGB(40,170,90) },
+            SliderHalo = Color3.fromRGB(70,210,120), SliderThumb = Color3.fromRGB(240,255,245), SliderThumbStroke = Color3.fromRGB(50,140,80),
+        },
+    },
+    Crimson = {
+        Name = "Crimson",
+        Colors = {
+            Window = Color3.fromRGB(16,8,8), Panel = Color3.fromRGB(22,12,12),
+            Row = Color3.fromRGB(30,16,16), Field = Color3.fromRGB(14,8,8),
+            Hover = Color3.fromRGB(48,22,22), Border = Color3.fromRGB(80,36,36),
+            Text = Color3.fromRGB(255,235,235), Muted = Color3.fromRGB(185,130,130),
+            Faint = Color3.fromRGB(120,80,80), White = Color3.fromRGB(255,255,255),
+        },
+        Glass = { Root = 0.07, Sidebar = 0.22, Row = 0.30, Field = 0.34, Button = 0.24, NavIdle = 0.38, NavHover = 0.18, NavActive = 0.10, Popup = 0.12 },
+        Visuals = {
+            RootBase = Color3.fromRGB(12,6,6), RootStroke = Color3.fromRGB(90,40,40),
+            RootGradient = { Color3.fromRGB(12,6,6), Color3.fromRGB(22,10,10), Color3.fromRGB(10,5,5) },
+            AnimeImageTransparency = 0.08, AnimeShadeColor = Color3.fromRGB(0,0,0), AnimeShadeTransparency = 0.62, AnimeShadeStops = {0.00,0.12,0.32},
+            SidebarBase = Color3.fromRGB(18,10,10), SidebarStroke = Color3.fromRGB(60,28,28),
+            SearchStroke = Color3.fromRGB(70,32,32), OpenStroke = Color3.fromRGB(110,50,50), OpenButtonBase = Color3.fromRGB(16,8,8),
+            BackdropGlowA = Color3.fromRGB(80,20,20), BackdropGlowB = Color3.fromRGB(40,12,12), BackdropWatermarkTransparency = 0.97,
+            GridColor = Color3.fromRGB(255,140,140), GridVTransparency = 0.955, GridHTransparency = 0.965,
+            NavButtonIdle = Color3.fromRGB(18,10,10), NavButtonHover = Color3.fromRGB(32,16,16), ResizeGuideTransparency = 0.35,
+            ControlStroke = Color3.fromRGB(70,32,32), FieldStroke = Color3.fromRGB(65,30,30), ButtonBase = Color3.fromRGB(24,12,12), ButtonStroke = Color3.fromRGB(70,32,32),
+            DropdownStroke = Color3.fromRGB(65,30,30), PopupStroke = Color3.fromRGB(110,50,50),
+            GothicShell = Color3.fromRGB(255,255,255), GothicShellStroke = Color3.fromRGB(110,50,50), GothicGlow = Color3.fromRGB(40,14,14),
+            GothicBar = Color3.fromRGB(110,50,50), GothicCorner = Color3.fromRGB(140,70,70), GothicWatermark = Color3.fromRGB(255,255,255), GothicWatermarkTransparency = 0.95,
+            GothicRow = Color3.fromRGB(18,10,10), GothicStroke = Color3.fromRGB(80,36,36), GothicDesc = Color3.fromRGB(200,150,150),
+            GothicBadgeText = Color3.fromRGB(255,240,240), GothicBadgeBackground = Color3.fromRGB(24,12,12), GothicBadgeStroke = Color3.fromRGB(90,40,40),
+            SliderValueBackground = Color3.fromRGB(14,8,8), SliderValueText = Color3.fromRGB(255,235,235), SliderValueStroke = Color3.fromRGB(80,36,36),
+            SliderRail = Color3.fromRGB(24,12,12), SliderRailStroke = Color3.fromRGB(70,32,32), SliderTrack = Color3.fromRGB(60,28,28),
+            SliderTrackGradient = { Color3.fromRGB(48,22,22), Color3.fromRGB(80,36,36), Color3.fromRGB(48,22,22) },
+            SliderFill = Color3.fromRGB(230,70,70), SliderFillGradient = { Color3.fromRGB(255,120,120), Color3.fromRGB(180,40,40) },
+            SliderHalo = Color3.fromRGB(230,70,70), SliderThumb = Color3.fromRGB(255,245,245), SliderThumbStroke = Color3.fromRGB(150,60,60),
+        },
+    },
+    Violet = {
+        Name = "Violet",
+        Colors = {
+            Window = Color3.fromRGB(12,8,18), Panel = Color3.fromRGB(18,12,26),
+            Row = Color3.fromRGB(26,18,36), Field = Color3.fromRGB(14,10,20),
+            Hover = Color3.fromRGB(40,28,55), Border = Color3.fromRGB(70,50,95),
+            Text = Color3.fromRGB(240,230,255), Muted = Color3.fromRGB(165,145,195),
+            Faint = Color3.fromRGB(110,90,135), White = Color3.fromRGB(255,255,255),
+        },
+        Glass = { Root = 0.07, Sidebar = 0.22, Row = 0.30, Field = 0.34, Button = 0.24, NavIdle = 0.38, NavHover = 0.18, NavActive = 0.10, Popup = 0.12 },
+        Visuals = {
+            RootBase = Color3.fromRGB(10,6,14), RootStroke = Color3.fromRGB(80,55,110),
+            RootGradient = { Color3.fromRGB(10,6,14), Color3.fromRGB(18,12,26), Color3.fromRGB(8,5,12) },
+            AnimeImageTransparency = 0.08, AnimeShadeColor = Color3.fromRGB(0,0,0), AnimeShadeTransparency = 0.62, AnimeShadeStops = {0.00,0.12,0.32},
+            SidebarBase = Color3.fromRGB(14,10,22), SidebarStroke = Color3.fromRGB(50,36,70),
+            SearchStroke = Color3.fromRGB(55,40,75), OpenStroke = Color3.fromRGB(95,70,130), OpenButtonBase = Color3.fromRGB(12,8,18),
+            BackdropGlowA = Color3.fromRGB(70,40,110), BackdropGlowB = Color3.fromRGB(35,20,55), BackdropWatermarkTransparency = 0.97,
+            GridColor = Color3.fromRGB(200,160,255), GridVTransparency = 0.955, GridHTransparency = 0.965,
+            NavButtonIdle = Color3.fromRGB(14,10,22), NavButtonHover = Color3.fromRGB(26,18,38), ResizeGuideTransparency = 0.35,
+            ControlStroke = Color3.fromRGB(60,42,82), FieldStroke = Color3.fromRGB(55,40,75), ButtonBase = Color3.fromRGB(20,14,30), ButtonStroke = Color3.fromRGB(60,42,82),
+            DropdownStroke = Color3.fromRGB(55,40,75), PopupStroke = Color3.fromRGB(95,70,130),
+            GothicShell = Color3.fromRGB(255,255,255), GothicShellStroke = Color3.fromRGB(95,70,130), GothicGlow = Color3.fromRGB(30,18,50),
+            GothicBar = Color3.fromRGB(95,70,130), GothicCorner = Color3.fromRGB(120,90,160), GothicWatermark = Color3.fromRGB(255,255,255), GothicWatermarkTransparency = 0.95,
+            GothicRow = Color3.fromRGB(14,10,22), GothicStroke = Color3.fromRGB(70,50,95), GothicDesc = Color3.fromRGB(180,160,210),
+            GothicBadgeText = Color3.fromRGB(245,240,255), GothicBadgeBackground = Color3.fromRGB(20,14,30), GothicBadgeStroke = Color3.fromRGB(80,55,110),
+            SliderValueBackground = Color3.fromRGB(14,10,20), SliderValueText = Color3.fromRGB(240,230,255), SliderValueStroke = Color3.fromRGB(70,50,95),
+            SliderRail = Color3.fromRGB(20,14,30), SliderRailStroke = Color3.fromRGB(60,42,82), SliderTrack = Color3.fromRGB(50,36,70),
+            SliderTrackGradient = { Color3.fromRGB(40,28,55), Color3.fromRGB(70,50,95), Color3.fromRGB(40,28,55) },
+            SliderFill = Color3.fromRGB(170,110,255), SliderFillGradient = { Color3.fromRGB(210,160,255), Color3.fromRGB(120,70,210) },
+            SliderHalo = Color3.fromRGB(170,110,255), SliderThumb = Color3.fromRGB(250,245,255), SliderThumbStroke = Color3.fromRGB(120,80,180),
+        },
+    },
+    Amber = {
+        Name = "Amber",
+        Colors = {
+            Window = Color3.fromRGB(16,12,6), Panel = Color3.fromRGB(22,18,10),
+            Row = Color3.fromRGB(32,26,14), Field = Color3.fromRGB(14,12,8),
+            Hover = Color3.fromRGB(48,38,20), Border = Color3.fromRGB(90,70,30),
+            Text = Color3.fromRGB(255,245,220), Muted = Color3.fromRGB(190,165,110),
+            Faint = Color3.fromRGB(120,100,60), White = Color3.fromRGB(255,255,255),
+        },
+        Glass = { Root = 0.07, Sidebar = 0.22, Row = 0.30, Field = 0.34, Button = 0.24, NavIdle = 0.38, NavHover = 0.18, NavActive = 0.10, Popup = 0.12 },
+        Visuals = {
+            RootBase = Color3.fromRGB(12,10,5), RootStroke = Color3.fromRGB(100,80,35),
+            RootGradient = { Color3.fromRGB(12,10,5), Color3.fromRGB(22,18,10), Color3.fromRGB(10,8,4) },
+            AnimeImageTransparency = 0.08, AnimeShadeColor = Color3.fromRGB(0,0,0), AnimeShadeTransparency = 0.62, AnimeShadeStops = {0.00,0.12,0.32},
+            SidebarBase = Color3.fromRGB(18,14,8), SidebarStroke = Color3.fromRGB(65,50,22),
+            SearchStroke = Color3.fromRGB(75,58,25), OpenStroke = Color3.fromRGB(120,95,40), OpenButtonBase = Color3.fromRGB(16,12,6),
+            BackdropGlowA = Color3.fromRGB(90,70,20), BackdropGlowB = Color3.fromRGB(45,35,10), BackdropWatermarkTransparency = 0.97,
+            GridColor = Color3.fromRGB(255,210,120), GridVTransparency = 0.955, GridHTransparency = 0.965,
+            NavButtonIdle = Color3.fromRGB(18,14,8), NavButtonHover = Color3.fromRGB(30,24,12), ResizeGuideTransparency = 0.35,
+            ControlStroke = Color3.fromRGB(75,58,25), FieldStroke = Color3.fromRGB(70,55,24), ButtonBase = Color3.fromRGB(24,18,10), ButtonStroke = Color3.fromRGB(75,58,25),
+            DropdownStroke = Color3.fromRGB(70,55,24), PopupStroke = Color3.fromRGB(120,95,40),
+            GothicShell = Color3.fromRGB(255,255,255), GothicShellStroke = Color3.fromRGB(120,95,40), GothicGlow = Color3.fromRGB(40,30,10),
+            GothicBar = Color3.fromRGB(120,95,40), GothicCorner = Color3.fromRGB(150,120,50), GothicWatermark = Color3.fromRGB(255,255,255), GothicWatermarkTransparency = 0.95,
+            GothicRow = Color3.fromRGB(18,14,8), GothicStroke = Color3.fromRGB(90,70,30), GothicDesc = Color3.fromRGB(210,185,130),
+            GothicBadgeText = Color3.fromRGB(255,250,230), GothicBadgeBackground = Color3.fromRGB(24,18,10), GothicBadgeStroke = Color3.fromRGB(100,80,35),
+            SliderValueBackground = Color3.fromRGB(14,12,8), SliderValueText = Color3.fromRGB(255,245,220), SliderValueStroke = Color3.fromRGB(90,70,30),
+            SliderRail = Color3.fromRGB(24,18,10), SliderRailStroke = Color3.fromRGB(75,58,25), SliderTrack = Color3.fromRGB(65,50,22),
+            SliderTrackGradient = { Color3.fromRGB(48,38,20), Color3.fromRGB(90,70,30), Color3.fromRGB(48,38,20) },
+            SliderFill = Color3.fromRGB(240,180,50), SliderFillGradient = { Color3.fromRGB(255,210,100), Color3.fromRGB(200,140,30) },
+            SliderHalo = Color3.fromRGB(240,180,50), SliderThumb = Color3.fromRGB(255,250,235), SliderThumbStroke = Color3.fromRGB(160,120,40),
+        },
+    },
+    Cyber = {
+        Name = "Cyber",
+        Colors = {
+            Window = Color3.fromRGB(6,10,12), Panel = Color3.fromRGB(10,16,18),
+            Row = Color3.fromRGB(14,24,26), Field = Color3.fromRGB(8,12,14),
+            Hover = Color3.fromRGB(20,40,42), Border = Color3.fromRGB(30,90,85),
+            Text = Color3.fromRGB(200,255,250), Muted = Color3.fromRGB(100,180,170),
+            Faint = Color3.fromRGB(60,120,115), White = Color3.fromRGB(255,255,255),
+        },
+        Glass = { Root = 0.08, Sidebar = 0.24, Row = 0.32, Field = 0.36, Button = 0.26, NavIdle = 0.40, NavHover = 0.20, NavActive = 0.10, Popup = 0.14 },
+        Visuals = {
+            RootBase = Color3.fromRGB(4,8,10), RootStroke = Color3.fromRGB(40,110,100),
+            RootGradient = { Color3.fromRGB(4,8,10), Color3.fromRGB(10,18,20), Color3.fromRGB(3,6,8) },
+            AnimeImageTransparency = 0.1, AnimeShadeColor = Color3.fromRGB(0,0,0), AnimeShadeTransparency = 0.65, AnimeShadeStops = {0.00,0.14,0.34},
+            SidebarBase = Color3.fromRGB(8,14,16), SidebarStroke = Color3.fromRGB(24,70,65),
+            SearchStroke = Color3.fromRGB(28,80,75), OpenStroke = Color3.fromRGB(40,140,130), OpenButtonBase = Color3.fromRGB(6,10,12),
+            BackdropGlowA = Color3.fromRGB(20,90,85), BackdropGlowB = Color3.fromRGB(10,50,48), BackdropWatermarkTransparency = 0.97,
+            GridColor = Color3.fromRGB(80,255,230), GridVTransparency = 0.95, GridHTransparency = 0.96,
+            NavButtonIdle = Color3.fromRGB(8,14,16), NavButtonHover = Color3.fromRGB(16,30,32), ResizeGuideTransparency = 0.32,
+            ControlStroke = Color3.fromRGB(30,80,75), FieldStroke = Color3.fromRGB(28,75,70), ButtonBase = Color3.fromRGB(12,22,24), ButtonStroke = Color3.fromRGB(30,80,75),
+            DropdownStroke = Color3.fromRGB(28,75,70), PopupStroke = Color3.fromRGB(40,140,130),
+            GothicShell = Color3.fromRGB(255,255,255), GothicShellStroke = Color3.fromRGB(40,140,130), GothicGlow = Color3.fromRGB(12,40,38),
+            GothicBar = Color3.fromRGB(40,140,130), GothicCorner = Color3.fromRGB(60,170,160), GothicWatermark = Color3.fromRGB(255,255,255), GothicWatermarkTransparency = 0.95,
+            GothicRow = Color3.fromRGB(8,14,16), GothicStroke = Color3.fromRGB(30,90,85), GothicDesc = Color3.fromRGB(130,210,200),
+            GothicBadgeText = Color3.fromRGB(220,255,250), GothicBadgeBackground = Color3.fromRGB(12,22,24), GothicBadgeStroke = Color3.fromRGB(40,110,100),
+            SliderValueBackground = Color3.fromRGB(8,12,14), SliderValueText = Color3.fromRGB(200,255,250), SliderValueStroke = Color3.fromRGB(30,90,85),
+            SliderRail = Color3.fromRGB(12,22,24), SliderRailStroke = Color3.fromRGB(30,80,75), SliderTrack = Color3.fromRGB(24,70,65),
+            SliderTrackGradient = { Color3.fromRGB(18,50,48), Color3.fromRGB(30,90,85), Color3.fromRGB(18,50,48) },
+            SliderFill = Color3.fromRGB(50,255,220), SliderFillGradient = { Color3.fromRGB(120,255,240), Color3.fromRGB(20,200,180) },
+            SliderHalo = Color3.fromRGB(50,255,220), SliderThumb = Color3.fromRGB(240,255,252), SliderThumbStroke = Color3.fromRGB(40,160,150),
+        },
+    },
+    Rose = {
+        Name = "Rose",
+        Colors = {
+            Window = Color3.fromRGB(16,8,12), Panel = Color3.fromRGB(24,12,18),
+            Row = Color3.fromRGB(34,18,26), Field = Color3.fromRGB(14,8,12),
+            Hover = Color3.fromRGB(50,26,36), Border = Color3.fromRGB(95,45,65),
+            Text = Color3.fromRGB(255,235,242), Muted = Color3.fromRGB(195,140,160),
+            Faint = Color3.fromRGB(130,90,105), White = Color3.fromRGB(255,255,255),
+        },
+        Glass = { Root = 0.07, Sidebar = 0.22, Row = 0.30, Field = 0.34, Button = 0.24, NavIdle = 0.38, NavHover = 0.18, NavActive = 0.10, Popup = 0.12 },
+        Visuals = {
+            RootBase = Color3.fromRGB(12,6,10), RootStroke = Color3.fromRGB(105,50,70),
+            RootGradient = { Color3.fromRGB(12,6,10), Color3.fromRGB(22,12,18), Color3.fromRGB(10,5,8) },
+            AnimeImageTransparency = 0.08, AnimeShadeColor = Color3.fromRGB(0,0,0), AnimeShadeTransparency = 0.62, AnimeShadeStops = {0.00,0.12,0.32},
+            SidebarBase = Color3.fromRGB(18,10,14), SidebarStroke = Color3.fromRGB(70,32,48),
+            SearchStroke = Color3.fromRGB(80,36,55), OpenStroke = Color3.fromRGB(130,55,80), OpenButtonBase = Color3.fromRGB(16,8,12),
+            BackdropGlowA = Color3.fromRGB(90,30,55), BackdropGlowB = Color3.fromRGB(45,15,28), BackdropWatermarkTransparency = 0.97,
+            GridColor = Color3.fromRGB(255,160,190), GridVTransparency = 0.955, GridHTransparency = 0.965,
+            NavButtonIdle = Color3.fromRGB(18,10,14), NavButtonHover = Color3.fromRGB(30,16,22), ResizeGuideTransparency = 0.35,
+            ControlStroke = Color3.fromRGB(80,36,55), FieldStroke = Color3.fromRGB(75,34,50), ButtonBase = Color3.fromRGB(26,14,20), ButtonStroke = Color3.fromRGB(80,36,55),
+            DropdownStroke = Color3.fromRGB(75,34,50), PopupStroke = Color3.fromRGB(130,55,80),
+            GothicShell = Color3.fromRGB(255,255,255), GothicShellStroke = Color3.fromRGB(130,55,80), GothicGlow = Color3.fromRGB(40,14,26),
+            GothicBar = Color3.fromRGB(130,55,80), GothicCorner = Color3.fromRGB(160,70,100), GothicWatermark = Color3.fromRGB(255,255,255), GothicWatermarkTransparency = 0.95,
+            GothicRow = Color3.fromRGB(18,10,14), GothicStroke = Color3.fromRGB(95,45,65), GothicDesc = Color3.fromRGB(210,160,180),
+            GothicBadgeText = Color3.fromRGB(255,240,245), GothicBadgeBackground = Color3.fromRGB(26,14,20), GothicBadgeStroke = Color3.fromRGB(105,50,70),
+            SliderValueBackground = Color3.fromRGB(14,8,12), SliderValueText = Color3.fromRGB(255,235,242), SliderValueStroke = Color3.fromRGB(95,45,65),
+            SliderRail = Color3.fromRGB(26,14,20), SliderRailStroke = Color3.fromRGB(80,36,55), SliderTrack = Color3.fromRGB(70,32,48),
+            SliderTrackGradient = { Color3.fromRGB(50,26,36), Color3.fromRGB(95,45,65), Color3.fromRGB(50,26,36) },
+            SliderFill = Color3.fromRGB(255,90,140), SliderFillGradient = { Color3.fromRGB(255,140,180), Color3.fromRGB(200,50,100) },
+            SliderHalo = Color3.fromRGB(255,90,140), SliderThumb = Color3.fromRGB(255,245,250), SliderThumbStroke = Color3.fromRGB(170,60,100),
+        },
+    },
+    Nord = {
+        Name = "Nord",
+        Colors = {
+            Window = Color3.fromRGB(36,41,51), Panel = Color3.fromRGB(46,52,64),
+            Row = Color3.fromRGB(59,66,82), Field = Color3.fromRGB(40,45,56),
+            Hover = Color3.fromRGB(67,76,94), Border = Color3.fromRGB(76,86,106),
+            Text = Color3.fromRGB(236,239,244), Muted = Color3.fromRGB(136,146,176),
+            Faint = Color3.fromRGB(94,105,130), White = Color3.fromRGB(255,255,255),
+        },
+        Glass = { Root = 0.05, Sidebar = 0.16, Row = 0.22, Field = 0.26, Button = 0.18, NavIdle = 0.28, NavHover = 0.14, NavActive = 0.06, Popup = 0.10 },
+        Visuals = {
+            RootBase = Color3.fromRGB(30,34,42), RootStroke = Color3.fromRGB(76,86,106),
+            RootGradient = { Color3.fromRGB(30,34,42), Color3.fromRGB(46,52,64), Color3.fromRGB(28,32,40) },
+            AnimeImageTransparency = 0.08, AnimeShadeColor = Color3.fromRGB(0,0,0), AnimeShadeTransparency = 0.55, AnimeShadeStops = {0.00,0.10,0.28},
+            SidebarBase = Color3.fromRGB(40,45,56), SidebarStroke = Color3.fromRGB(67,76,94),
+            SearchStroke = Color3.fromRGB(76,86,106), OpenStroke = Color3.fromRGB(94,105,130), OpenButtonBase = Color3.fromRGB(36,41,51),
+            BackdropGlowA = Color3.fromRGB(94,129,172), BackdropGlowB = Color3.fromRGB(67,76,94), BackdropWatermarkTransparency = 0.96,
+            GridColor = Color3.fromRGB(216,222,233), GridVTransparency = 0.955, GridHTransparency = 0.965,
+            NavButtonIdle = Color3.fromRGB(40,45,56), NavButtonHover = Color3.fromRGB(59,66,82), ResizeGuideTransparency = 0.4,
+            ControlStroke = Color3.fromRGB(76,86,106), FieldStroke = Color3.fromRGB(67,76,94), ButtonBase = Color3.fromRGB(46,52,64), ButtonStroke = Color3.fromRGB(76,86,106),
+            DropdownStroke = Color3.fromRGB(67,76,94), PopupStroke = Color3.fromRGB(94,105,130),
+            GothicShell = Color3.fromRGB(255,255,255), GothicShellStroke = Color3.fromRGB(94,105,130), GothicGlow = Color3.fromRGB(59,66,82),
+            GothicBar = Color3.fromRGB(94,129,172), GothicCorner = Color3.fromRGB(129,161,193), GothicWatermark = Color3.fromRGB(255,255,255), GothicWatermarkTransparency = 0.94,
+            GothicRow = Color3.fromRGB(40,45,56), GothicStroke = Color3.fromRGB(76,86,106), GothicDesc = Color3.fromRGB(180,190,210),
+            GothicBadgeText = Color3.fromRGB(236,239,244), GothicBadgeBackground = Color3.fromRGB(46,52,64), GothicBadgeStroke = Color3.fromRGB(76,86,106),
+            SliderValueBackground = Color3.fromRGB(40,45,56), SliderValueText = Color3.fromRGB(236,239,244), SliderValueStroke = Color3.fromRGB(76,86,106),
+            SliderRail = Color3.fromRGB(46,52,64), SliderRailStroke = Color3.fromRGB(67,76,94), SliderTrack = Color3.fromRGB(59,66,82),
+            SliderTrackGradient = { Color3.fromRGB(50,58,72), Color3.fromRGB(76,86,106), Color3.fromRGB(50,58,72) },
+            SliderFill = Color3.fromRGB(136,192,208), SliderFillGradient = { Color3.fromRGB(180,220,230), Color3.fromRGB(94,160,180) },
+            SliderHalo = Color3.fromRGB(136,192,208), SliderThumb = Color3.fromRGB(236,239,244), SliderThumbStroke = Color3.fromRGB(100,140,160),
+        },
+    },
+    Carbon = {
+        Name = "Carbon",
+        Colors = {
+            Window = Color3.fromRGB(14,14,14), Panel = Color3.fromRGB(20,20,20),
+            Row = Color3.fromRGB(28,28,28), Field = Color3.fromRGB(16,16,16),
+            Hover = Color3.fromRGB(40,40,40), Border = Color3.fromRGB(55,55,55),
+            Text = Color3.fromRGB(245,245,245), Muted = Color3.fromRGB(150,150,150),
+            Faint = Color3.fromRGB(95,95,95), White = Color3.fromRGB(255,255,255),
+        },
+        Glass = { Root = 0.04, Sidebar = 0.16, Row = 0.24, Field = 0.28, Button = 0.20, NavIdle = 0.32, NavHover = 0.16, NavActive = 0.08, Popup = 0.10 },
+        Visuals = {
+            RootBase = Color3.fromRGB(10,10,10), RootStroke = Color3.fromRGB(60,60,60),
+            RootGradient = { Color3.fromRGB(8,8,8), Color3.fromRGB(18,18,18), Color3.fromRGB(6,6,6) },
+            AnimeImageTransparency = 0.08, AnimeShadeColor = Color3.fromRGB(0,0,0), AnimeShadeTransparency = 0.6, AnimeShadeStops = {0.00,0.10,0.30},
+            SidebarBase = Color3.fromRGB(16,16,16), SidebarStroke = Color3.fromRGB(40,40,40),
+            SearchStroke = Color3.fromRGB(45,45,45), OpenStroke = Color3.fromRGB(70,70,70), OpenButtonBase = Color3.fromRGB(14,14,14),
+            BackdropGlowA = Color3.fromRGB(40,40,40), BackdropGlowB = Color3.fromRGB(28,28,28), BackdropWatermarkTransparency = 0.97,
+            GridColor = Color3.fromRGB(255,255,255), GridVTransparency = 0.96, GridHTransparency = 0.97,
+            NavButtonIdle = Color3.fromRGB(16,16,16), NavButtonHover = Color3.fromRGB(28,28,28), ResizeGuideTransparency = 0.35,
+            ControlStroke = Color3.fromRGB(50,50,50), FieldStroke = Color3.fromRGB(48,48,48), ButtonBase = Color3.fromRGB(22,22,22), ButtonStroke = Color3.fromRGB(50,50,50),
+            DropdownStroke = Color3.fromRGB(48,48,48), PopupStroke = Color3.fromRGB(70,70,70),
+            GothicShell = Color3.fromRGB(255,255,255), GothicShellStroke = Color3.fromRGB(70,70,70), GothicGlow = Color3.fromRGB(30,30,30),
+            GothicBar = Color3.fromRGB(80,80,80), GothicCorner = Color3.fromRGB(100,100,100), GothicWatermark = Color3.fromRGB(255,255,255), GothicWatermarkTransparency = 0.95,
+            GothicRow = Color3.fromRGB(16,16,16), GothicStroke = Color3.fromRGB(55,55,55), GothicDesc = Color3.fromRGB(170,170,170),
+            GothicBadgeText = Color3.fromRGB(250,250,250), GothicBadgeBackground = Color3.fromRGB(22,22,22), GothicBadgeStroke = Color3.fromRGB(60,60,60),
+            SliderValueBackground = Color3.fromRGB(16,16,16), SliderValueText = Color3.fromRGB(245,245,245), SliderValueStroke = Color3.fromRGB(55,55,55),
+            SliderRail = Color3.fromRGB(22,22,22), SliderRailStroke = Color3.fromRGB(50,50,50), SliderTrack = Color3.fromRGB(45,45,45),
+            SliderTrackGradient = { Color3.fromRGB(36,36,36), Color3.fromRGB(55,55,55), Color3.fromRGB(36,36,36) },
+            SliderFill = Color3.fromRGB(230,230,230), SliderFillGradient = { Color3.fromRGB(255,255,255), Color3.fromRGB(180,180,180) },
+            SliderHalo = Color3.fromRGB(230,230,230), SliderThumb = Color3.fromRGB(250,250,250), SliderThumbStroke = Color3.fromRGB(90,90,90),
         },
     },
 }
@@ -2135,6 +2456,56 @@ function Nox:CreateWindow(options)
         return self
     end
 
+    local function applyIconAsset(targetMark, targetImage, source, size)
+        if source == nil or source == false or source == "" then
+            targetMark.Visible = true
+            targetImage.Visible = false
+            targetImage.Image = ""
+            return
+        end
+        local asset = resolveBackgroundAsset(source)
+        if not asset then
+            if type(source) == "string" and (source:match("^rbxassetid://") or source:match("^%d+$")) then
+                asset = source:match("^%d+$") and ("rbxassetid://" .. source) or source
+            end
+        end
+        if asset then
+            targetImage.Image = asset
+            targetImage.Size = UDim2.fromOffset(size, size)
+            targetImage.Visible = true
+            targetMark.Visible = false
+        else
+            targetMark.Visible = true
+            targetImage.Visible = false
+        end
+    end
+
+    function w:SetIcon(source)
+        w._customIcon = source
+        applyIconAsset(logo, logoImage, source, (w.Narrow and 24) or 28)
+        applyIconAsset(openIcon, openIconImage, source, 22)
+        return self
+    end
+
+    function w:SetLogo(source)
+        return self:SetIcon(source)
+    end
+
+    function w:ClearIcon()
+        w._customIcon = nil
+        logo.Visible = true
+        logoImage.Visible = false
+        logoImage.Image = ""
+        openIcon.Visible = true
+        openIconImage.Visible = false
+        openIconImage.Image = ""
+        return self
+    end
+
+    function w:GetIcon()
+        return w._customIcon
+    end
+
     function w:SetBackground(source, transparency)
         if source == nil or source == false or source == "" then
             return self:ClearBackground()
@@ -2198,6 +2569,11 @@ function Nox:CreateWindow(options)
 
     local top=new("Frame",{Name="Topbar",BackgroundTransparency=1,Size=UDim2.new(1,0,0,58),ZIndex=5},root)
     local logo=mark(top,28); logo.Position=UDim2.fromOffset(16,12)
+    local logoImage=new("ImageLabel",{
+        Name="LogoImage",BackgroundTransparency=1,Size=UDim2.fromOffset(28,28),
+        Position=UDim2.fromOffset(16,12),Image="",ScaleType=Enum.ScaleType.Fit,Visible=false,ZIndex=6,
+    },top)
+    round(logoImage,8)
 
     local titleCluster=new("Frame",{Name="TitleCluster",BackgroundTransparency=1,
         Position=UDim2.fromOffset(50,9),Size=UDim2.fromOffset(290,24)},top)
@@ -2243,6 +2619,11 @@ function Nox:CreateWindow(options)
     local openButton=button(launcherSurface,"",{Name="OpenXeroHub",Position=UDim2.new(.5,-73,0,16),Size=UDim2.fromOffset(146,44),BackgroundColor3=w.ThemeDef.Visuals.OpenButtonBase,BackgroundTransparency=Glass.Button,ZIndex=20})
     round(openButton,12); local openStroke=stroke(openButton,w.ThemeDef.Visuals.OpenStroke)
     local openIcon=mark(openButton,22); openIcon.Position=UDim2.fromOffset(12,11)
+    local openIconImage=new("ImageLabel",{
+        Name="OpenIconImage",BackgroundTransparency=1,Size=UDim2.fromOffset(22,22),
+        Position=UDim2.fromOffset(12,11),Image="",ScaleType=Enum.ScaleType.Fit,Visible=false,ZIndex=21,
+    },openButton)
+    round(openIconImage,6)
     local openLabel=label(openButton,"XEROHUB",11,C.Text,{Position=UDim2.fromOffset(45,5),Size=UDim2.new(1,-55,0,20),Font=MEDIUM})
     local openHint=label(openButton,"ABRIR PANEL",8,C.Muted,{Position=UDim2.fromOffset(45,25),Size=UDim2.new(1,-55,0,12),Font=MEDIUM})
     w.OpenButton=openButton; w._launcherMoved=false; w.UIElements={Main=root,Title=brand,ActiveStatus=statusLabel,SideBar=sidebar,MainBar=content,Pages=pages,Search=searchBox,Topbar=top}
@@ -2423,6 +2804,8 @@ function Nox:CreateWindow(options)
 
         top.Size=UDim2.new(1,0,0,topHeight)
         logo.Size=UDim2.fromOffset(phone and 24 or 28,phone and 24 or 28)
+        logoImage.Size=UDim2.fromOffset(phone and 24 or 28,phone and 24 or 28)
+        logoImage.Position=logo.Position
         logo.Position=UDim2.fromOffset(phone and 10 or 14,phone and 11 or 11)
         logo.Visible=true
 
@@ -2941,6 +3324,10 @@ function Nox:CreateWindow(options)
     else
         refreshBackgroundForTheme(resolvedTheme)
     end
+    local iconOpt = o.Icon or o.Logo or o.LogoImage
+    if iconOpt ~= nil then
+        w:SetIcon(iconOpt)
+    end
 
     task.defer(function()
         if w.Destroyed then return end
@@ -2973,17 +3360,29 @@ end
 function Nox:AddTheme(name, definition)
     local themeName = tostring(name or "")
     if themeName == "" then return nil end
+    definition = definition or {}
+    local hasFull = type(definition.Colors) == "table" and type(definition.Visuals) == "table" and type(definition.Glass) == "table"
     local baseName = "Xero"
-    if definition and definition.Base then
+    if definition.Base then
         baseName = canonicalThemeName(definition.Base)
-    elseif definition and string.lower(tostring(definition.Style or "")) == "light" then
+    elseif string.lower(tostring(definition.Style or "")) == "light" then
         baseName = "Blanco"
+    elseif hasFull and not definition.Base then
+        baseName = nil
     end
-    local base = THEMES[baseName] or THEMES.Xero
-    local merged = deepMerge(base, definition or {})
+    local merged
+    if baseName == nil then
+        merged = deepCopy(definition)
+    else
+        local base = THEMES[baseName] or THEMES.Xero
+        merged = deepMerge(base, definition)
+    end
     merged.Name = themeName
+    if type(merged.Colors) ~= "table" then merged.Colors = deepCopy((THEMES.Xero).Colors) end
+    if type(merged.Glass) ~= "table" then merged.Glass = deepCopy((THEMES.Xero).Glass) end
+    if type(merged.Visuals) ~= "table" then merged.Visuals = deepCopy((THEMES.Xero).Visuals) end
     THEMES[themeName] = merged
-    if definition and definition.Background then
+    if definition.Background then
         THEME_BACKGROUNDS[themeName] = {
             URL = tostring(definition.Background.URL or definition.BackgroundUrl or ""),
             CACHE = tostring(definition.Background.CACHE or definition.BackgroundCache or ("XeroHub/Assets/" .. themeName .. ".png")),
@@ -2994,7 +3393,11 @@ end
 
 function Nox:RemoveTheme(name)
     local themeName = tostring(name or "")
-    if themeName == "Xero" or themeName == "Blanco" then return false end
+    local protected = {
+        Xero = true, Blanco = true, Midnight = true, Ocean = true, Emerald = true,
+        Crimson = true, Violet = true, Amber = true, Cyber = true, Rose = true, Nord = true, Carbon = true,
+    }
+    if protected[themeName] then return false end
     THEMES[themeName] = nil
     THEME_BACKGROUNDS[themeName] = nil
     return true
