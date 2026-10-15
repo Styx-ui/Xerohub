@@ -2361,13 +2361,13 @@ function Nox:CreateWindow(options)
             task.wait()
         end
     end
-    local parent=player:WaitForChild("PlayerGui")
+    local parent = player:WaitForChild("PlayerGui")
     pcall(function()
         if gethui then
-            local hui=gethui()
-            if hui then parent=hui else parent=game:GetService("CoreGui") end
-        else
-            parent=game:GetService("CoreGui")
+            local hui = gethui()
+            if hui then parent = hui end
+        elseif protectgui or (syn and syn.protect_gui) then
+            parent = game:GetService("CoreGui")
         end
     end)
     local env=(getgenv and getgenv()) or _G
@@ -2426,6 +2426,13 @@ function Nox:CreateWindow(options)
     pcall(function() launcherGui.OnTopOfCoreBlur=true end)
     local launcherSurface=new("Frame",{Name="FullScreen",BackgroundTransparency=1,Size=UDim2.fromScale(1,1)},launcherGui)
     w.LauncherGui=launcherGui
+    pcall(function()
+        local pg = protectgui or (syn and syn.protect_gui) or (gethui and function() end)
+        if protectgui then protectgui(gui) end
+        if syn and syn.protect_gui then syn.protect_gui(gui) end
+        if protectgui then protectgui(launcherGui) end
+        if syn and syn.protect_gui then syn.protect_gui(launcherGui) end
+    end)
     self.ScreenGui=gui; w.ScreenGui=gui
     local surface=new("Frame",{Name="Surface",BackgroundTransparency=1,Size=UDim2.fromScale(1,1)},gui)
     local root=new("Frame",{Name="XeroPanel",BackgroundColor3=w.ThemeDef.Visuals.RootBase,BackgroundTransparency=Glass.Root,AnchorPoint=Vector2.new(.5,.5),
@@ -3477,7 +3484,16 @@ function Nox:CreateWindow(options)
         end
     end)
 
-    task.defer(fit)
+    task.defer(function()
+        if not w.Destroyed then
+            fit()
+            w.Opened = true
+            root.Visible = true
+            root.BackgroundTransparency = Glass.Root
+            if scale then scale.Scale = w.UIScale end
+            w:_applyOpenButtonState()
+        end
+    end)
     return w
 end
 function Nox:AddTheme(name, definition)
